@@ -18,12 +18,11 @@ public class TollPassRepository {
     return instance;
   }
 
-  //returns null if not absent
+  //returns null if not present
   public static TollPass getTollPass(String identifier) {
     return tollPassDetails.get(identifier);
   }
 
-  //returns null if not absent
   public static boolean hasValidTollPass(String vehicleId, String tollId) {
     TollPass tollPass = tollPassDetails.get(vehicleId);
     if(tollPass == null) {
@@ -32,7 +31,7 @@ public class TollPassRepository {
     return tollPass.isValid(tollId);
   }
 
-  public static void createTollPass(TollPass tollPass) throws DuplicatePassException {
+  public static void save(TollPass tollPass) throws DuplicatePassException {
     if(hasValidTollPass(tollPass.getVehicle().getIdentifier(), tollPass.getTollId())) {
       throw new DuplicatePassException();
     }

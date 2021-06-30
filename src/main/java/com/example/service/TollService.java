@@ -39,7 +39,7 @@ public class TollService {
     Toll toll = TollRepository.getToll(tollId);
     TollBooth tollBooth = toll.getTollBooth(tollBoothId);
     TollPass tollPass = TollPassFactory.createTollPass(vehicleId, vehicleType, passType, tollId);
-    TollPassRepository.createTollPass(tollPass);
+    TollPassRepository.save(tollPass);
     tollBooth.addIssuePass(tollPass);
     return tollPass;
   }
