@@ -18,8 +18,8 @@ public class SingleDayPass extends TollPass {
     if (returnJourneyCompleted) {
       return false;
     }
-    if(tollId.equals(this.getTollId())) {
-      return true;
+    if(!tollId.equals(this.getTollId())) {
+      return false;
     }
     long currentTime = System.currentTimeMillis();
     if ((currentTime - getPurchaseTimeMillis()) > DAY_MILLIS) {
