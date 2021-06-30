@@ -10,7 +10,7 @@ public class SingleDayPass extends TollPass {
   private boolean returnJourneyCompleted = false;
 
   public SingleDayPass(long purchaseTimeMillis, Vehicle vehicle, Double amount, String tollId) {
-    super(purchaseTimeMillis, vehicle, amount, tollId);
+    super(purchaseTimeMillis, vehicle, amount, tollId, purchaseTimeMillis + DAY_MILLIS);
   }
 
   @Override
@@ -22,7 +22,7 @@ public class SingleDayPass extends TollPass {
       return false;
     }
     long currentTime = System.currentTimeMillis();
-    if ((currentTime - getPurchaseTimeMillis()) > DAY_MILLIS) {
+    if (currentTime  > getValidTimeMillis()) {
       return false;
     }
     return true;

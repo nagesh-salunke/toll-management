@@ -14,12 +14,13 @@ public class TollPassFactory {
     TollPass tollPass = null;
     Vehicle vehicle = Vehicle.builder().identifier(vehicleId).type(vehicleType).build();
     Double passCost = PriceRepository.getPassCost(vehicleType, passType);
+    long currentTime = System.currentTimeMillis();
     if(passType == PassType.SINGLE) {
-      tollPass = new TollPass(System.currentTimeMillis(), vehicle, passCost,tollId);
+      tollPass = new TollPass(currentTime, vehicle, passCost,tollId, currentTime);
     } else if(passType == PassType.WEEK_UNLIMITED) {
-      tollPass = new WeekPass(System.currentTimeMillis(), vehicle, passCost,tollId);
+      tollPass = new WeekPass(currentTime, vehicle, passCost,tollId);
     } else {
-      tollPass = new SingleDayPass(System.currentTimeMillis(), vehicle, passCost,tollId);
+      tollPass = new SingleDayPass(currentTime, vehicle, passCost,tollId);
     }
     return tollPass;
   }

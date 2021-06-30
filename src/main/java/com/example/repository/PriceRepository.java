@@ -16,11 +16,11 @@ public class PriceRepository {
       }
     } else {
       if (passType.equals(PassType.SINGLE)) {
-        return 10.0d;
+        return 5.0d;
       } else if (passType.equals(PassType.DAY_RETURN)) {
-        return 15.0d;
+        return 8.0d;
       } else {
-        return 50.0d;
+        return 25.0d;
       }
     }
   }

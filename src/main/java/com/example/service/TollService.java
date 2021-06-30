@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.exceptions.DuplicatePassException;
 import com.example.exceptions.PassNotFoundException;
+import com.example.exceptions.TollBoothNotPresentException;
 import com.example.model.PassType;
 import com.example.model.SingleDayPass;
 import com.example.model.Toll;
@@ -17,7 +18,8 @@ public class TollService {
     return  TollPassRepository.hasValidTollPass(vehicleId, tollId);
   }
 
-  public TollPass processVehicle(String vehicleId, VehicleType vehicleType, String tollBoothId, String tollId) throws PassNotFoundException {
+  public TollPass processVehicle(String vehicleId, VehicleType vehicleType, String tollBoothId, String tollId)
+      throws PassNotFoundException, TollBoothNotPresentException {
     Toll toll = TollRepository.getToll(tollId);
     TollBooth tollBooth = toll.getTollBooth(tollBoothId);
     if(TollPassRepository.hasValidTollPass(vehicleId, toll.getId())) {
@@ -33,11 +35,11 @@ public class TollService {
   }
 
   public TollPass purchaseTollPass(String vehicleId, VehicleType vehicleType, String tollBoothId, String tollId, PassType passType)
-      throws DuplicatePassException {
+      throws DuplicatePassException, TollBoothNotPresentException {
     Toll toll = TollRepository.getToll(tollId);
+    TollBooth tollBooth = toll.getTollBooth(tollBoothId);
     TollPass tollPass = TollPassFactory.createTollPass(vehicleId, vehicleType, passType, tollId);
     TollPassRepository.createTollPass(tollPass);
-    TollBooth tollBooth = toll.getTollBooth(tollBoothId);
     tollBooth.addIssuePass(tollPass);
     return tollPass;
   }

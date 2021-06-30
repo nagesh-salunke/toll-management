@@ -14,14 +14,18 @@ public class TollBooth {
   @Getter
   private String id;
 
+  private String name;
+
   @Builder.Default
   private List<TollPass> issuedTollPasses = new ArrayList<>();
 
+  @Getter
   private Long numberOfVehicleProcessed = 0L;
 
-  public TollBooth() {
+  public TollBooth(String name) {
     this.id = UUID.randomUUID().toString();
     this.issuedTollPasses = new ArrayList<>();
+    this.name = name;
   }
 
   public void addIssuePass(TollPass tollPass) {
@@ -35,14 +39,16 @@ public class TollBooth {
 
   public String getBoothReport() {
     StringBuilder sb = new StringBuilder();
-    sb.append("Total Amount : ")
+    sb.append("Toll Booth : ")
+        .append(this.name)
+        .append(" Total Amount : ")
         .append(getTotalAmount())
         .append(" Total vehicle processed : ")
         .append(numberOfVehicleProcessed);
     return sb.toString();
   }
 
-  private Double getTotalAmount() {
+  public Double getTotalAmount() {
     return issuedTollPasses.stream().map(TollPass::getAmount).reduce(0d, Double::sum);
   }
 }

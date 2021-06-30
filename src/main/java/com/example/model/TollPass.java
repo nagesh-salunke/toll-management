@@ -13,6 +13,7 @@ public class TollPass {
   private Vehicle vehicle;
   private Double amount;
   private String tollId;
+  private long validTimeMillis;
 
   public boolean isValid(String tollId) {
     return false;
