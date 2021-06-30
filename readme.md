@@ -1,4 +1,12 @@
-Problem Statement : 
+**How to Run Application :**
+
+1. Open as maven project in Intellj or any other IDE
+2. Run Main.java class main method
+3. Experiment with TollService methods to create toll/booth/process vehicle/purchase pass etc
+
+----
+
+**Problem Statement : **
 
 
 Toll Management Application
