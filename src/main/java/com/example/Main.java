@@ -33,11 +33,11 @@ public class Main {
     tollService.purchaseTollPass("v1", VehicleType.CAR, tollBooth1.getId(), toll1.getId(), PassType.WEEK_UNLIMITED);
 
     if(tollService.hasValidPass("v1", toll1.getId())) {
-      tollService.processVehicle("v1", VehicleType.CAR, tollBooth1.getId(), toll1.getId());
+      tollService.processVehicle("v1", tollBooth1.getId(), toll1.getId());
     }
-    tollService.processVehicle("v1", VehicleType.CAR, tollBooth1.getId(), toll1.getId());
+    tollService.processVehicle("v1", tollBooth1.getId(), toll1.getId());
 
-    tollService.processVehicle("v1", VehicleType.CAR, tollBooth21.getId(), toll2.getId());
+    tollService.processVehicle("v1", tollBooth21.getId(), toll2.getId());
 
     //single pass
     tollService.purchaseTollPass("v2", VehicleType.MOTORBIKE, tollBooth2.getId(), toll1.getId(), PassType.SINGLE);

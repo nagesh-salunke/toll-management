@@ -18,7 +18,7 @@ public class TollService {
     return  TollPassRepository.hasValidTollPass(vehicleId, tollId);
   }
 
-  public TollPass processVehicle(String vehicleId, VehicleType vehicleType, String tollBoothId, String tollId)
+  public TollPass processVehicle(String vehicleId, String tollBoothId, String tollId)
       throws PassNotFoundException, TollBoothNotPresentException {
     Toll toll = TollRepository.getToll(tollId);
     TollBooth tollBooth = toll.getTollBooth(tollBoothId);
